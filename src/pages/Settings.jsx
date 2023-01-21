@@ -1,13 +1,14 @@
 import { ScrollView, StyleSheet, View, Switch } from 'react-native'
 import StyledText from '../components/StyledText'
-import theme from '../theme'
 import { useDispatch, useSelector } from 'react-redux'
 import { modifySetting } from '../redux/states/settings'
+import { useTheme } from 'styled-components'
 
 const SettingCard = ({ description, prop }) => {
     const value = Object.values(prop)[0]
     const key = Object.keys(prop)[0]
     const dispatch = useDispatch()
+    const theme = useTheme()
     
     const toggleSwitch = () => dispatch(modifySetting({ [key]: !value }))
 

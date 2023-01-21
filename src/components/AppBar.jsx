@@ -6,6 +6,7 @@ import { getPageId, getPageName } from '../utils/utils'
 import SavedButton from './SavedButton'
 import { useSelector } from 'react-redux'
 import PrevPageButton from './PrevPageButtton'
+import styled from 'styled-components/native'
 
 const AppBar = () => {
     const pageName = getPageName()
@@ -37,8 +38,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingTop: Constants.statusBarHeight + 10,
-        backgroundColor: theme.appBar.primary
+        backgroundColor: 'blue'
     }
 })
+
+const Container = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    padding: ${Constants.statusBarHeight + 10}px 20px 0 20px;
+    background-color: ${({ theme }) => theme.appBar.primary};
+`
 
 export default AppBar
