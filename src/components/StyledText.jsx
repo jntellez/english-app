@@ -1,48 +1,28 @@
-import { StyleSheet, Text } from 'react-native'
-import theme from '../themes'
+import { useTheme } from 'styled-components'
+import styled from 'styled-components/native'
 
 const StyledText = ({ children, color, fontSize, fontWeight, align, style, ...restOfProps }) => {
+    const theme = useTheme()
     const textStyles = [
-        styles.text,
-        color === 'primary' && styles.colorPrimary,
-        color === 'secondary' && styles.colorSecondary,
-        color === 'white' && styles.white,
-        fontSize === 'subheading' && styles.subheading,
-        fontWeight === 'bold' && styles.bold,
-        align === 'center' && styles.textAlignCenter,
+        color === 'primary' && { color: theme.colors.primary },
+        color === 'secondary' && { color: theme.colors.textSecondary },
+        color === 'white' && { color: theme.colors.white },
+        fontSize === 'subheading' && { fontSize: theme.fontSizes.subheading },
+        fontWeight === 'bold' && { fontWeight: theme.fontWeights.bold },
+        align === 'center' && { textAlign: 'center' },
         style
     ]
     
-    return <Text style={textStyles} {...restOfProps}>
+    return <TextStyled align={align} style={textStyles} {...restOfProps}>
         {children}
-    </Text>
+    </TextStyled>
 }
 
-const styles = StyleSheet.create({
-    text: {
-        fontSize: theme.fontSizes.body,
-        fontFamily: theme.fonts.main,
-        color: theme.colors.textPrimary,
-        fontWeight: theme.fontWeights.normal
-    },
-    colorPrimary: {
-        color: theme.colors.primary
-    },
-    colorSecondary: {
-        color: theme.colors.textSecondary
-    },
-    white: {
-        color: theme.colors.white
-    },
-    bold: {
-        fontWeight: theme.fontWeights.bold
-    },
-    subheading: {
-        fontSize: theme.fontSizes.subheading
-    },
-    textAlignCenter: {
-        textAlign: 'center'
-    }
-})
+const TextStyled = styled.Text`
+    font-size: ${({ theme }) => theme.fontSizes.body};
+    font-family: ${({ theme }) => theme.fonts.main};
+    font-weight: ${({ theme }) => theme.fontWeights.normal};
+    color: ${({ theme }) => theme.colors.textPrimary};
+`
 
 export default StyledText

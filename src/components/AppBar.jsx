@@ -1,7 +1,6 @@
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import Constants from 'expo-constants'
 import StyledText from './StyledText'
-import theme from '../theme'
 import { getPageId, getPageName } from '../utils/utils'
 import SavedButton from './SavedButton'
 import { useSelector } from 'react-redux'
@@ -15,37 +14,25 @@ const AppBar = () => {
 
     const item = words.find(w => w.word === pageId)
     const title = pageName === 'saved' ? 'Saved' : pageName === 'settings' ? 'Settings' : 'EnglishApp'
-    
-    const AppbarStyles = [
-        styles.container,
-        { paddingVertical: pageName === 'word' ? 7 : 20 }
-    ]
+
+    const isPageWord = pageName === 'word'
     
     return (
-        <View style={AppbarStyles}>
+        <Container pageWord={isPageWord}>
             <View style={{ flexDirection: 'row' }}>
                 {pageName === 'word' && <PrevPageButton />}
                 <StyledText color='white' fontWeight='bold'>{title}</StyledText>
             </View>
             {pageName === 'word' && <SavedButton style={{ marginTop: -10 }} item={item} />}
-        </View>
+        </Container>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 20,
-        paddingTop: Constants.statusBarHeight + 10,
-        backgroundColor: 'blue'
-    }
-})
 
 const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    padding: ${Constants.statusBarHeight + 10}px 20px 0 20px;
+    padding: ${({ pageWord }) => pageWord ? '7px 20px' : '20px'};
+    padding-top: ${Constants.statusBarHeight + 10}px;
     background-color: ${({ theme }) => theme.appBar.primary};
 `
 

@@ -1,19 +1,19 @@
 const darkTheme = {
     appBar: {
-        primary: '#071330',
-        secondary: '#0C4160',
-        textPrimary: '#fefefe'
+        primary: '#161B22',
+        textPrimary: '#F0F6EE'
     },
     colors: {
-        textPrimary: '#fefefe',
-        textSecondary: '#C3CEDA',
-        primary: '#071330',
-        secondary: '#738FA7',
-        white: '#fefefe'
+        textPrimary: '#C9D1D9',
+        textSecondary: '#39A6FF',
+        primary: '#C9D1D9',
+        secondary: '#30363D',
+        background: '#0D1117',
+        white: '#F0F6EE'
     },
     fontSizes: {
-        body: 14,
-        subheading: 16
+        body: '14px',
+        subheading: '16px'
     },
     fonts: {
         main: 'System'
@@ -27,7 +27,6 @@ const darkTheme = {
 const defaultTheme = {
     appBar: {
         primary: '#057dcd',
-        secondary: '#e8eef1',
         textPrimary: '#fefefe'
     },
     colors: {
@@ -35,11 +34,12 @@ const defaultTheme = {
         textSecondary: '#43b0f1',
         primary: '#057dcd',
         secondary: '#e8eef1',
+        background: '#fefefe',
         white: '#fefefe'
     },
     fontSizes: {
-        body: 14,
-        subheading: 16
+        body: '14px',
+        subheading: '16px'
     },
     fonts: {
         main: 'System'

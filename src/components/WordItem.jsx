@@ -1,35 +1,30 @@
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
-import theme from '../theme'
+import { TouchableWithoutFeedback } from 'react-native'
 import StyledText from './StyledText'
 import { Link } from 'react-router-native'
 import SavedButton from './SavedButton'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 const WordItem = (item) => {
     const { hideTranslation } = useSelector(store => store.settings)
 
     return <Link to={`/word/${item.word}`} component={TouchableWithoutFeedback}>
-        <View style={styles.container}>
-            <StyledText style={styles.text}>{item.word}</StyledText>
-            {!hideTranslation && <StyledText style={styles.text} color='secondary'>{item.spanishTranslation}</StyledText>}
+        <Container>
+            <StyledText style={{ padding: 20 }}>{item.word}</StyledText>
+            {!hideTranslation && <StyledText style={{ padding: 20 }} color='secondary'>{item.spanishTranslation}</StyledText>}
             <SavedButton item={item} />
-        </View>
+        </Container>
     </Link>
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 10,
-        marginHorizontal: 10,
-        backgroundColor: theme.colors.white,
-        borderBottomWidth: 1,
-        borderBottomColor: theme.colors.secondary
-    },
-    text: {
-        padding: 20
-    }
-})
+const Container = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin: 0 10px;
+    background-color: ${({ theme }) => theme.colors.background};
+    border-bottom-width: 1px;
+    border-bottom-color: ${({ theme }) => theme.colors.secondary};
+`
 
 export default WordItem

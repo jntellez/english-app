@@ -1,8 +1,9 @@
-import { ScrollView, StyleSheet, View, Switch } from 'react-native'
+import { ScrollView, Switch } from 'react-native'
 import StyledText from '../components/StyledText'
 import { useDispatch, useSelector } from 'react-redux'
 import { modifySetting } from '../redux/states/settings'
 import { useTheme } from 'styled-components'
+import styled from 'styled-components/native'
 
 const SettingCard = ({ description, prop }) => {
     const value = Object.values(prop)[0]
@@ -12,7 +13,7 @@ const SettingCard = ({ description, prop }) => {
     
     const toggleSwitch = () => dispatch(modifySetting({ [key]: !value }))
 
-    return <View style={styles.cardContainer}>
+    return <CardContainer>
         <StyledText style={{ padding: 6 }}>{description}</StyledText>
         <Switch
             trackColor={{ false: theme.colors.secondary, true: theme.colors.textSecondary }}
@@ -21,31 +22,27 @@ const SettingCard = ({ description, prop }) => {
             onValueChange={toggleSwitch}
             value={value}
         />
-    </View>
+    </CardContainer>
 }
 
 const Settings = () => {
     const { hideTranslation, changeToEnglish, enableDarkTheme } = useSelector(store => store.settings)
+    const theme = useTheme()
 
-    return <ScrollView style={styles.container}>
+    return <ScrollView style={{ paddingHorizontal: 10, backgroundColor: theme.colors.background }}>
         <SettingCard prop={{ hideTranslation }} description='Ocultar traducción de las palabras' />
         <SettingCard prop={{ changeToEnglish }} description='Cambiar de Español a Inglés' />
         <SettingCard prop={{ enableDarkTheme }} description='Habilitar el tema oscuro' />
     </ScrollView>
 }
 
-const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 10
-    },
-    cardContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 20,
-        paddingHorizontal: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: theme.colors.secondary
-    }
-})
+const CardContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.background};
+`
 
 export default Settings
