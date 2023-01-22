@@ -1,11 +1,12 @@
 {
     "SAVED_TITLE": "Saved",
-    "SETTINGS_TITLE": "Settings",
+    "SAVED_EMPTY_COMPONENT": "No items saved",
     "WORD_HEAD_ENGLISH": "English",
     "WORD_HEAD_SPANISH": "Spanish",
     "WORD_HEAD_FIRST_SENTENCE": "First sentence",
     "WORD_HEAD_SECOND_SENTENCE": "Second sentence",
     "WORD_HEAD_THIRD_SENTENCE": "Third sentence",
+    "SETTINGS_TITLE": "Settings",
     "SETTINGS_HIDE_TRANSLATION": "Hide the translation of the words",
     "SETTINGS_CHANGE_TO_ENGLISH": "Switch from Spanish to English",
     "SETTINGS_ENABLE_DARK_THEME": "Enable dark theme"

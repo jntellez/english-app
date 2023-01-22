@@ -6,16 +6,19 @@ import { SvgXml } from 'react-native-svg'
 import StyledText from '../components/StyledText'
 import styled from 'styled-components/native'
 import { useTheme } from 'styled-components'
+import { useIntl } from 'react-intl'
 
 const SavedEmpty = () => {
     const theme = useTheme()
+    const intl = useIntl()
+    const { SAVED_EMPTY_COMPONENT } = intl.messages
 
     return <Container>
         <View>
             <SvgXml xml={StarIcon(theme.colors.secondary, true)} width={90} height={90} />
         </View>
         <StyledText fontSize='subheading' fontWeight='bold' style={{ color: theme.colors.secondary, padding: 15 }}>
-            No hay elementos guardados
+            {SAVED_EMPTY_COMPONENT}
         </StyledText>
     </Container>
 }
