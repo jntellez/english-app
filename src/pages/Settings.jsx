@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { modifySetting } from '../redux/states/settings'
 import { useTheme } from 'styled-components'
 import styled from 'styled-components/native'
+import { useIntl } from 'react-intl'
 
 const SettingCard = ({ description, prop }) => {
     const value = Object.values(prop)[0]
@@ -28,11 +29,13 @@ const SettingCard = ({ description, prop }) => {
 const Settings = () => {
     const { hideTranslation, changeToEnglish, enableDarkTheme } = useSelector(store => store.settings)
     const theme = useTheme()
+    const intl = useIntl()
+    const { SETTINGS_HIDE_TRANSLATION, SETTINGS_CHANGE_TO_ENGLISH, SETTINGS_ENABLE_DARK_THEME } = intl.messages
 
     return <ScrollView style={{ paddingHorizontal: 10, backgroundColor: theme.colors.background }}>
-        <SettingCard prop={{ hideTranslation }} description='Ocultar traducción de las palabras' />
-        <SettingCard prop={{ changeToEnglish }} description='Cambiar de Español a Inglés' />
-        <SettingCard prop={{ enableDarkTheme }} description='Habilitar el tema oscuro' />
+        <SettingCard prop={{ hideTranslation }} description={SETTINGS_HIDE_TRANSLATION} />
+        <SettingCard prop={{ changeToEnglish }} description={SETTINGS_CHANGE_TO_ENGLISH} />
+        <SettingCard prop={{ enableDarkTheme }} description={SETTINGS_ENABLE_DARK_THEME} />
     </ScrollView>
 }
 

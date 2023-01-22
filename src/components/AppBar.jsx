@@ -6,14 +6,17 @@ import SavedButton from './SavedButton'
 import { useSelector } from 'react-redux'
 import PrevPageButton from './PrevPageButtton'
 import styled from 'styled-components/native'
+import { useIntl } from 'react-intl'
 
 const AppBar = () => {
     const pageName = getPageName()
     const pageId = getPageId()
     const words = useSelector(store => store.words)
+    const intl = useIntl()
+    const { SAVED_TITLE, SETTINGS_TITLE } = intl.messages
 
     const item = words.find(w => w.word === pageId)
-    const title = pageName === 'saved' ? 'Saved' : pageName === 'settings' ? 'Settings' : 'EnglishApp'
+    const title = pageName === 'saved' ? SAVED_TITLE : pageName === 'settings' ? SETTINGS_TITLE : 'EnglishApp'
 
     const isPageWord = pageName === 'word'
     

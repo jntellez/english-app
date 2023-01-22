@@ -12,10 +12,13 @@ import { addWords } from '../redux/states/words'
 import words from '../data/words'
 import { ThemeProvider } from 'styled-components'
 import themes from '../themes'
+import { IntlProvider } from 'react-intl'
+import EnglishMessages from '../langs/en-US.json'
+import SpanishMessages from '../langs/es-MX.json'
 
 const Main = () => {
     const dispatch = useDispatch()
-    const { enableDarkTheme } = useSelector(store => store.settings)
+    const { changeToEnglish, enableDarkTheme } = useSelector(store => store.settings)
     
     useEffect(() => {
         dispatch(addWords(words))
@@ -23,24 +26,29 @@ const Main = () => {
 
     return (
         <ThemeProvider theme={themes[enableDarkTheme ? 'dark' : 'light']}>
-            <View style={{ flex: 1 }}>
-                <AppBar />
-                <Switch>
-                    <Route exact path='/'>
-                        <WordsList />
-                    </Route>
-                    <Route exact path='/settings'>
-                        <Settings />
-                    </Route>
-                    <Route exact path='/saved'>
-                        <Saved />
-                    </Route>
-                    <Route exact path='/word/:word'>
-                        <Word />
-                    </Route>
-                </Switch>
-                <NavigationBar />
-            </View>
+            <IntlProvider
+                locale={changeToEnglish ? 'en-US' : 'es-MX'}
+                messages={changeToEnglish ? EnglishMessages : SpanishMessages}
+            >
+                <View style={{ flex: 1 }}>
+                    <AppBar />
+                    <Switch>
+                        <Route exact path='/'>
+                            <WordsList />
+                        </Route>
+                        <Route exact path='/saved'>
+                            <Saved />
+                        </Route>
+                        <Route exact path='/settings'>
+                            <Settings />
+                        </Route>
+                        <Route exact path='/word/:word'>
+                            <Word />
+                        </Route>
+                    </Switch>
+                    <NavigationBar />
+                </View>
+            </IntlProvider>
         </ThemeProvider>
     )
 }
