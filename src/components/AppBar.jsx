@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import PrevPageButton from './PrevPageButtton'
 import styled from 'styled-components/native'
 import { useIntl } from 'react-intl'
+import SearchTab from './SearchTab'
 
 const AppBar = () => {
     const pageName = getPageName()
@@ -18,7 +19,7 @@ const AppBar = () => {
     const item = words.find(w => w.word === pageId)
     const title = pageName === 'saved' ? SAVED_TITLE : pageName === 'settings' ? SETTINGS_TITLE : 'EnglishApp'
 
-    const isPageWord = pageName === 'word'
+    const isPageWord = pageName === 'word' || pageName === '' || pageName === 'saved'
     
     return (
         <Container pageWord={isPageWord}>
@@ -26,6 +27,7 @@ const AppBar = () => {
                 {pageName === 'word' && <PrevPageButton />}
                 <StyledText color='white' fontWeight='bold'>{title}</StyledText>
             </View>
+            {(pageName === '' || pageName === 'saved') && <SearchTab />}
             {pageName === 'word' && <SavedButton style={{ marginTop: -10 }} item={item} />}
         </Container>
     )

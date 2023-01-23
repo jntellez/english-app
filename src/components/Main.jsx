@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { Switch, Route } from 'react-router-native'
+import { Switch, Route, Redirect } from 'react-router-native'
 import AppBar from './AppBar'
 import NavigationBar from './NavigationBar'
 import WordsList from './WordsList'
@@ -45,6 +45,7 @@ const Main = () => {
                         <Route exact path='/word/:word'>
                             <Word />
                         </Route>
+                        <Redirect to='/' />
                     </Switch>
                     <NavigationBar />
                 </View>
