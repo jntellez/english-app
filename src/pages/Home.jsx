@@ -1,5 +1,9 @@
+import WordsList from '../components/WordsList'
+
 const Home = () => {
-    return <></>
+    return <>
+        <WordsList />
+    </>
 }
 
 export default Home

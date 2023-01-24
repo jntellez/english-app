@@ -2,10 +2,10 @@ import { View } from 'react-native'
 import { Switch, Route, Redirect } from 'react-router-native'
 import AppBar from './AppBar'
 import NavigationBar from './NavigationBar'
-import WordsList from './WordsList'
-import Settings from '../pages/Settings'
+import Home from '../pages/Home'
 import Saved from '../pages/Saved'
 import Word from '../pages/Word'
+import Settings from '../pages/Settings'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addWords } from '../redux/states/words'
@@ -34,7 +34,7 @@ const Main = () => {
                     <AppBar />
                     <Switch>
                         <Route exact path='/'>
-                            <WordsList />
+                            <Home />
                         </Route>
                         <Route exact path='/saved'>
                             <Saved />

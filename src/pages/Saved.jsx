@@ -7,6 +7,9 @@ import StyledText from '../components/StyledText'
 import styled from 'styled-components/native'
 import { useTheme } from 'styled-components'
 import { useIntl } from 'react-intl'
+import { useEffect } from 'react'
+import { searchSavedSubject$ } from '../components/SearchSavedTab'
+import { useState } from 'react'
 
 const SavedEmpty = () => {
     const theme = useTheme()
@@ -24,11 +27,17 @@ const SavedEmpty = () => {
 }
 
 const Saved = () => {
-    const data = useSelector(store => store.saved)
+    const [value, setValue] = useState('')
     const theme = useTheme()
+    const data = useSelector(store => store.saved)
+    const filteredData = data.filter(item => item.word.includes(value))
+
+    useEffect(() => {
+        searchSavedSubject$.getSubject().subscribe(value => setValue(value))
+    }, [])
     
     if(data.length > 0) return <FlatList
-        data={data}
+        data={filteredData.length > 0 ? filteredData : data}
         renderItem={({ item: word }) => <WordItem {...word} />}
         style={{ backgroundColor: theme.colors.background }}
     />

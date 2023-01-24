@@ -8,6 +8,7 @@ import PrevPageButton from './PrevPageButtton'
 import styled from 'styled-components/native'
 import { useIntl } from 'react-intl'
 import SearchTab from './SearchTab'
+import SearchSavedTab from './SearchSavedTab'
 
 const AppBar = () => {
     const pageName = getPageName()
@@ -27,7 +28,8 @@ const AppBar = () => {
                 {pageName === 'word' && <PrevPageButton />}
                 <StyledText color='white' fontWeight='bold'>{title}</StyledText>
             </View>
-            {(pageName === '' || pageName === 'saved') && <SearchTab />}
+            {pageName === '' && <SearchTab />}
+            {pageName === 'saved' && <SearchSavedTab />}
             {pageName === 'word' && <SavedButton style={{ marginTop: -10 }} item={item} />}
         </Container>
     )

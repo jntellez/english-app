@@ -5,9 +5,9 @@ import SearchIcon from './icons/SearchIcon'
 import { useState, useRef } from 'react'
 import { SubjectManager } from '../models/subjectmanager'
 
-export const searchHomeSubject$ = new SubjectManager()
+export const searchSavedSubject$ = new SubjectManager()
 
-const SearchTab = () => {
+const SearchSavedTab = () => {
     const [active, setActive] = useState(false)
     const [value, setValue] = useState('')
     const theme = useTheme()
@@ -20,7 +20,7 @@ const SearchTab = () => {
     
     const handleChange = inputValue => {
         setValue(inputValue)
-        searchHomeSubject$.setSubject(inputValue.toLowerCase())
+        searchSavedSubject$.setSubject(inputValue.toLowerCase())
     }
 
     const handleBlur = () => setActive(false)
@@ -56,4 +56,4 @@ const ButtonWrapper = styled.View`
     padding: 0 10px 10px 10px;
 `
 
-export default SearchTab
+export default SearchSavedTab
