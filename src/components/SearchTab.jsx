@@ -4,6 +4,8 @@ import styled, { useTheme } from 'styled-components/native'
 import SearchIcon from './icons/SearchIcon'
 import { useState, useRef } from 'react'
 import { SubjectManager } from '../models/subjectmanager'
+import { useEffect } from 'react'
+import { Subscription } from 'rxjs'
 
 export const searchHomeSubject$ = new SubjectManager()
 
@@ -12,6 +14,12 @@ const SearchTab = () => {
     const [value, setValue] = useState('')
     const theme = useTheme()
     const inputRef = useRef()
+    let searchSubscription$ = new Subscription()
+
+    useEffect(() => {
+        searchSubscription$ = searchHomeSubject$.getSubject().subscribe(value => setValue(value))
+        return () => searchSubscription$.unsubscribe()
+    }, [])
     
     const handleClick = () => {
         setActive(true)

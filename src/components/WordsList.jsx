@@ -15,9 +15,8 @@ const WordsList = () => {
         searchHomeSubject$.getSubject().subscribe(value => setValue(value))
     }, [])
     
-
     return <FlatList
-        data={filteredData.length > 0 ? filteredData : data}
+        data={filteredData}
         renderItem={({ item: word }) => <WordItem { ...word } />}
         style={{ backgroundColor: theme.colors.background }}
     />

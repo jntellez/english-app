@@ -1,7 +1,7 @@
-import { Subject, BehaviorSubject } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 
 export class SubjectManager {
-    subject = new BehaviorSubject('charra')
+    subject = new BehaviorSubject('')
 
     getSubject() {
         return this.subject.asObservable()

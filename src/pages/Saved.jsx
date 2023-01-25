@@ -37,7 +37,7 @@ const Saved = () => {
     }, [])
     
     if(data.length > 0) return <FlatList
-        data={filteredData.length > 0 ? filteredData : data}
+        data={filteredData}
         renderItem={({ item: word }) => <WordItem {...word} />}
         style={{ backgroundColor: theme.colors.background }}
     />
