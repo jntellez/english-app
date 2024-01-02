@@ -9,5 +9,8 @@
     "SETTINGS_TITLE": "Configuraciones",
     "SETTINGS_HIDE_TRANSLATION": "Ocultar traducción de las palabras",
     "SETTINGS_CHANGE_TO_ENGLISH": "Cambiar de Español a Inglés",
-    "SETTINGS_ENABLE_DARK_THEME": "Habilitar el tema oscuro"
+    "SETTINGS_ENABLE_DARK_THEME": "Habilitar el tema oscuro",
+    "SETTINGS_FILTER_SORT": "Ordenar por alfabeto",
+    "SETTINGS_FILTER_LONGER": "Ordenar por palabras más largas",
+    "SETTINGS_FILTER_REVERSE": "Invertir orden"
 }

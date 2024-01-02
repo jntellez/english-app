@@ -9,10 +9,20 @@ import { useIntl } from 'react-intl'
 const SettingCard = ({ description, prop }) => {
     const value = Object.values(prop)[0]
     const key = Object.keys(prop)[0]
+    const { sortFilter, longerFilter } = useSelector(store => store.settings)
     const dispatch = useDispatch()
     const theme = useTheme()
     
-    const toggleSwitch = () => dispatch(modifySetting({ [key]: !value }))
+    const toggleSwitch = () => {
+        dispatch(modifySetting({ [key]: !value }))
+
+        if(key === 'sortFilter' && longerFilter) {
+            return dispatch(modifySetting({ longerFilter: false }))
+        }
+        else if(key === 'longerFilter' && sortFilter) {
+            dispatch(modifySetting({ sortFilter: false }))
+        }
+    }
 
     return <CardContainer>
         <StyledText style={{ padding: 6 }}>{description}</StyledText>
@@ -27,15 +37,32 @@ const SettingCard = ({ description, prop }) => {
 }
 
 const Settings = () => {
-    const { hideTranslation, changeToEnglish, enableDarkTheme } = useSelector(store => store.settings)
+    const {
+        hideTranslation,
+        changeToEnglish,
+        enableDarkTheme,
+        sortFilter,
+        longerFilter,
+        reverseFilter
+    } = useSelector(store => store.settings)
     const theme = useTheme()
     const intl = useIntl()
-    const { SETTINGS_HIDE_TRANSLATION, SETTINGS_CHANGE_TO_ENGLISH, SETTINGS_ENABLE_DARK_THEME } = intl.messages
+    const {
+        SETTINGS_HIDE_TRANSLATION,
+        SETTINGS_CHANGE_TO_ENGLISH,
+        SETTINGS_ENABLE_DARK_THEME,
+        SETTINGS_FILTER_SORT,
+        SETTINGS_FILTER_LONGER,
+        SETTINGS_FILTER_REVERSE
+    } = intl.messages
 
     return <ScrollView style={{ paddingHorizontal: 10, backgroundColor: theme.colors.background }}>
         <SettingCard prop={{ hideTranslation }} description={SETTINGS_HIDE_TRANSLATION} />
         <SettingCard prop={{ changeToEnglish }} description={SETTINGS_CHANGE_TO_ENGLISH} />
         <SettingCard prop={{ enableDarkTheme }} description={SETTINGS_ENABLE_DARK_THEME} />
+        <SettingCard prop={{ sortFilter }} description={SETTINGS_FILTER_SORT} />
+        <SettingCard prop={{ longerFilter }} description={SETTINGS_FILTER_LONGER} />
+        <SettingCard prop={{ reverseFilter }} description={SETTINGS_FILTER_REVERSE} />
     </ScrollView>
 }
 

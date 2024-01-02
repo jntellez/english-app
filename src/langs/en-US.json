@@ -9,5 +9,8 @@
     "SETTINGS_TITLE": "Settings",
     "SETTINGS_HIDE_TRANSLATION": "Hide the translation of the words",
     "SETTINGS_CHANGE_TO_ENGLISH": "Switch from Spanish to English",
-    "SETTINGS_ENABLE_DARK_THEME": "Enable dark theme"
+    "SETTINGS_ENABLE_DARK_THEME": "Enable dark theme",
+    "SETTINGS_FILTER_SORT": "Sort by alphabet",
+    "SETTINGS_FILTER_LONGER": "Sort by longest words",
+    "SETTINGS_FILTER_REVERSE": "Reverse order"
 }

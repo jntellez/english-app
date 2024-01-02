@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     hideTranslation: false,
     changeToEnglish: false,
-    enableDarkTheme: false
+    enableDarkTheme: false,
+    sortFilter: false,
+    longerFilter: false,
+    reverseFilter: false
 }
 
 export const settingsSlice = createSlice({
